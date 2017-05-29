@@ -14,11 +14,19 @@ module.exports = {
         filename: "bundle.js"
     },
     module: {
-        loaders: [
-            { test: /\.css$/, loader: "style-loader!css-loader" },
-            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-            { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
-        ]
+      loaders: [
+        {
+            test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+            loader: "file-loader"
+        },
+        {
+            test: /\.scss$/,
+            loaders: ["style-loader", "css-loader", "sass-loader"]
+        },
+        { test: /\.css$/, loader: "style-loader!css-loader" },
+        { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+        { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+      ]
     },
     devServer: {
       proxy: {
