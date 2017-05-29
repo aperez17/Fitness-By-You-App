@@ -21,7 +21,8 @@
      "html-webpack-plugin": "^2.28.0",
      "bootstrap": "^4.0.0-alpha.6",
      "jquery": "^3.2.1",
-     "tether": "^1.4.0"
+     "tether": "^1.4.0",
+     "lodash": "^4.17.4"
    },
   "author": "Alex Perez"
 }
