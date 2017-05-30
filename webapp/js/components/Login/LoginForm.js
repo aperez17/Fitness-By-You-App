@@ -37,9 +37,9 @@ export default class LoginForm extends React.Component {
 
   render() {
     return (
-      <div style={{display: 'inline-block', textAlign: 'center', position: 'absolute'}}>
+      <div className="login-form">
         <form className="form-signin">
-          <h2 className="form-signing-header">Login</h2>
+          <h2 className="form-signing-header">Fitness By You</h2>
           <label htmlFor="username" className="sr-only"><b>Username</b></label>
           <input type="text" id="username" className="form-control" placeholder="Email Address" required autoFocus onChange={this.onUserNameChanged.bind(this)}/>
           <label htmlFor="password"><b>Password</b></label>

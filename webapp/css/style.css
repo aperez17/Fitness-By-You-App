@@ -1,5 +1,60 @@
-body {
-  padding-bottom: 40px;
+div.alert {
+  margin-bottom: 0;
+}
+
+@media (min-width: 992px) {
+    .login-form {
+        width: 500px;
+        margin-left: -485px;
+    }
+}
+@media (min-width: 1200px) {
+    .login-form {
+        width: 500px;
+        margin-left: -585px;
+    }
+}
+
+.carousel-inner .carousel-caption {
+  bottom: inherit;
+  align-self: center;
+}
+
+.item {
+    overflow: hidden;
+    height: 100%;
+    background-color: transparent;
+    background-size: cover;
+}
+.carousel-control {
+    width: 30px;
+    font-size: 40px;
+    color: #fff;
+    text-shadow: none;
+    filter: none;
+    opacity: 1;
+}
+.carousel-control span {
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+
+
+.login-wrapper {
+    text-align: center;
+    position: relative
+}
+
+.login-form {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .form-signin {
