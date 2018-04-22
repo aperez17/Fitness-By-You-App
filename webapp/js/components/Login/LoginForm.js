@@ -30,9 +30,11 @@ export default class LoginForm extends React.Component {
       username: this.state.username,
       password: this.state.password
     };
-    ServiceClient.post('/api/login/authenticate', submission).then(() =>
-      this.props.alertHandlers.success("Logged in")
-    ).fail(e => this.props.alertHandlers.error(e));
+    ServiceClient.post('/api/login/authenticate', submission)
+      .then((data) => {
+        this.props.onLoginSuccess(data);
+      })
+      .fail(this.props.alertHandlers.onErrorResponse);
   }
 
   render() {
