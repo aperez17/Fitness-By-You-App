@@ -10,15 +10,29 @@ export default class App extends ComponentWithAlerts {
   constructor(props) {
     super(props);
     this.state = {
-      authenticated: null
+      authenticated: null,
+      user: null
     };
     this.onLoginSuccess = this.onLoginSuccess.bind(this);
+    this.onLogout = this.onLogout.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
   }
 
-  onLoginSuccess() {
+  onLoginSuccess(user) {
     this.setState({
-      authenticated: true
+      authenticated: true,
+      user: user
+    });
+  }
+
+  onLogout() {
+    const self = this;
+    return ServiceClient.get("/api/login/logout").then(() => {
+        self.setState({
+          authenticated: false,
+          user: null
+      });
+        self.onSuccessResponse({ message: "Successfully Logged out" });
     });
   }
 
@@ -28,9 +42,10 @@ export default class App extends ComponentWithAlerts {
 
   isAuthenticated() {
     if (_.isNil(this.state.authenticated)) {
-        ServiceClient.get("/api/login").then(() => {
+        ServiceClient.get("/api/login").then(user => {
             this.setState({
-                authenticated: true
+                authenticated: true,
+                user: user
             })
         }).fail((err) => {
             this.setState({
@@ -46,7 +61,7 @@ export default class App extends ComponentWithAlerts {
         {this.state.alert}
         <IfElse condition={this.state.authenticated}
           ifChild={
-            <Home />
+            <Home user={this.state.user} onLogout={this.onLogout} />
           }
           elseChild={
             <Login alertHandlers={this.alertHandlers} onLoginSuccess={this.onLoginSuccess}/>

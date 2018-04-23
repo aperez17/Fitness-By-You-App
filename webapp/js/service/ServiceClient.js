@@ -10,44 +10,44 @@ function handleError(error) {
   }
 }
 
+function ajaxCall(configuration, messageHandler) {
+    return $.ajax(configuration).then(data => data.data, handleError);
+}
+
 my.post = function(url, data) {
-  const promise = $.ajax({
+  return ajaxCall({
     type: 'POST',
     url: url,
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
-  }).then(data => data, handleError);
-  return promise;
-}
+  });
+};
 
 my.get = function(url) {
-  const promise = $.ajax({
+  return ajaxCall({
     type: 'GET',
     url: url
-  }).then(data => data, handleError);
-  return promise;
-}
+  });
+};
 
 my.getAll = function(url) {
   return my.get(url + "?q=*:*")
-}
+};
 
 my.put = function(url, data) {
-  const promise = $.ajax({
+  return ajaxCall({
     type: 'PUT',
     url: url,
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
-  }).then(data => data, handleError);
-  return promise;
-}
+  });
+};
 
 my.delete = function(url) {
-  const promise = $.ajax({
+  return ajaxCall({
     type: 'DELETE',
     url: url
-  }).then(data => data, handleError);
-  return promise;
-}
+  });
+};
 
 export default my;

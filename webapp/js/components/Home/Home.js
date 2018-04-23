@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkoutCard from '../Workout/WorkoutCard';
 import ServiceClient from '../../service/ServiceClient';
+import NavigationBar from '../Navigation/NavigationBar';
 
 
 export default class Home extends React.Component {
@@ -18,14 +19,17 @@ export default class Home extends React.Component {
       });
     });
   }
+
   renderWorkout(workout) {
     return (<WorkoutCard key={workout.workoutId} workout={workout} />);
   }
 
   render() {
-    console.log(this.state.workouts.map(this.renderWorkout))
     return (
       <div>
+          <div>
+            <NavigationBar user={this.props.user} onLogout={this.props.onLogout} />
+          </div>
         <ul>
           {this.state.workouts.map(this.renderWorkout)}
         </ul>
